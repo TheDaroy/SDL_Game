@@ -1,60 +1,61 @@
 #include "Timer.h"
+namespace QuickSDL {
+	Timer* Timer::vInstance = nullptr;
 
-Timer* Timer::vInstance = nullptr;
-
-Timer* Timer::Instance()
-{
-	if (vInstance == nullptr)
+	Timer* Timer::Instance()
 	{
-		vInstance = new Timer();
+		if (vInstance == nullptr)
+		{
+			vInstance = new Timer();
+		}
+		return vInstance;
 	}
-	return vInstance;
-}
 
 
-Timer::Timer()
-{
-	Reset();
-	vTimeScale = 1.0f;
-}
+	Timer::Timer()
+	{
+		Reset();
+		vTimeScale = 1.0f;
+	}
 
-Timer::~Timer()
-{
-}
+	Timer::~Timer()
+	{
+	}
 
 
 
-void Timer::Release()
-{
+	void Timer::Release()
+	{
 
-	delete vInstance;
-	vInstance = nullptr;
-}
+		delete vInstance;
+		vInstance = nullptr;
+	}
 
-void Timer::Reset()
-{
-	vStartTicks = SDL_GetTicks();
-	vElapsedTicks = 0;
-	vDeltaTime = 0.0f;
-}
+	void Timer::Reset()
+	{
+		vStartTicks = SDL_GetTicks();
+		vElapsedTicks = 0;
+		vDeltaTime = 0.0f;
+	}
 
-float Timer::DeltaTime()
-{
-	return vDeltaTime;
-}
+	float Timer::DeltaTime()
+	{
+		return vDeltaTime;
+	}
 
-void Timer::TimeScale(float t)
-{
-	vTimeScale = t;
-}
+	void Timer::TimeScale(float t)
+	{
+		vTimeScale = t;
+	}
 
-float Timer::TimeScale()
-{
-	return vTimeScale;
-}
+	float Timer::TimeScale()
+	{
+		return vTimeScale;
+	}
 
-void Timer::Update()
-{
-	vElapsedTicks = SDL_GetTicks() - vStartTicks;
-	vDeltaTime = vElapsedTicks * 0.001f;
+	void Timer::Update()
+	{
+		vElapsedTicks = SDL_GetTicks() - vStartTicks;
+		vDeltaTime = vElapsedTicks * 0.001f;
+	}
 }

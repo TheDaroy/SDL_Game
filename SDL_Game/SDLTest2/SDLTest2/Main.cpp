@@ -2,11 +2,11 @@
 
 int main(int argc, char* argv[])
 {
-	GameManager* game = GameManager::Instance();
+	QuickSDL::GameManager* game = QuickSDL::GameManager::Instance();
 
 	game->Run();
 
-	GameManager::Release();
+	QuickSDL::GameManager::Release();
 	game = nullptr;
 	return 0;
 }

@@ -1,132 +1,157 @@
 #include "GameEntity.h"
 #include <iostream>
-
+namespace QuickSDL {
 #pragma region Struct/De-Struct
-GameEntity::GameEntity(float x, float y)
-{
-	mPos.x = x;
-	mPos.y = y;
+	GameEntity::GameEntity(float x, float y)
+	{
+		mPos.x = x;
+		mPos.y = y;
 
-	mRotation = 0;
+		mRotation = 0;
 
-	mParent = nullptr;
-	mScale = VEC2_ONE;
-}
+		mParent = nullptr;
+		mScale = VEC2_ONE;
+	}
 
-GameEntity::~GameEntity()
-{
-	mParent = nullptr;
-}
+	GameEntity::~GameEntity()
+	{
+		mParent = nullptr;
+	}
 #pragma endregion
 
 #pragma region Pos
-void GameEntity::Pos(Vector2 pos)
-{
-	mPos = pos;
-}
-
-Vector2 GameEntity::GetPos(SPACE space)
-{
-	
-	if (space == local || mParent == NULL)
+	void GameEntity::Pos(Vector2 pos)
 	{
-		return mPos;
+		mPos = pos;
 	}
 
-	Vector2 parentScale = mParent->GetScale(world);
-	Vector2 rotPos = RotateVector(mPos, mParent->GetRotation(local));
+	Vector2 GameEntity::GetPos(SPACE space)
+	{
 
-	return mParent->GetPos(world) + Vector2(rotPos.x * parentScale.x , rotPos.y * parentScale.y);
-}
+		if (space == local || mParent == NULL)
+		{
+			return mPos;
+		}
+
+		Vector2 parentScale = mParent->GetScale(world);
+		Vector2 rotPos = RotateVector(Vector2(mPos.x * parentScale.x, mPos.y * parentScale.y), mParent->GetRotation(local));
+
+		return mParent->GetPos(world) + rotPos;
+	}
 
 #pragma endregion
 
 #pragma region Rotation
 
-void GameEntity::Rotation(float rotation)
-{
-	mRotation = rotation;
-	if (mRotation > 360.0f)
+	void GameEntity::Rotation(float rotation)
 	{
-		mRotation -= 360.0f;
+		mRotation = rotation;
+		if (mRotation > 360.0f)
+		{
+			mRotation -= 360.0f;
+		}
+
+		if (mRotation < 0.0f)
+		{
+			mRotation += 360.0f;
+		}
 	}
 
-	if (mRotation < 0.0f)
+	float GameEntity::GetRotation(SPACE space)
 	{
-		mRotation += 360.0f;
+		if (space == local || mParent == nullptr)
+		{
+			return mRotation;
+		}
+		return mParent->GetRotation(world) + mRotation;
 	}
-}
-
-float GameEntity::GetRotation(SPACE space)
-{
-	if (space == local || mParent == nullptr)
-	{
-		return mRotation;
-	}
-	return mParent->GetRotation(world) + mRotation;
-}
 #pragma endregion
 
 
 
-void GameEntity::Scale(Vector2 scale)
-{
-	mScale = scale;
-}
-Vector2 GameEntity::GetScale(SPACE space)
-{
-	if (space == local || mParent == nullptr)
+	void GameEntity::Scale(Vector2 scale)
 	{
-		return mScale;
+		mScale = scale;
 	}
-	Vector2 parentScale = mParent->GetScale(world);
-	return Vector2(parentScale.x * mScale.x, parentScale.y * mScale.y);
-}
-#pragma region Active
-void GameEntity::Active(bool active)
-{
-	mActive = active;
-}
+	Vector2 GameEntity::GetScale(SPACE space)
+	{
+		if (space == local || mParent == nullptr)
+		{
+			return mScale;
+		}
+		Vector2 scale = mParent->GetScale(world);
+		scale.x *= mScale.x;
+		scale.y *= mScale.y;
 
-bool GameEntity::GetActive()
-{
-	return mActive;
-}
+		return scale;
+	}
+#pragma region Active
+	void GameEntity::Active(bool active)
+	{
+		mActive = active;
+	}
+
+	bool GameEntity::GetActive()
+	{
+		return mActive;
+	}
 #pragma endregion
 
 #pragma region Parent
 
-void GameEntity::Parent(GameEntity* parent)
-{
-	std::cout << parent << std::endl;
-	mPos = GetPos(world) - parent->GetPos(world);
-	mParent = parent;
-}
+	void GameEntity::Parent(GameEntity* parent)
+	{
 
-GameEntity* GameEntity::Parent()
-{
-	return mParent;
-}
+
+		if (parent == nullptr)
+		{
+			mPos = GetPos(world);
+			mRotation = GetRotation(world);
+			mScale = GetScale(world);
+		}
+		else
+		{
+			if (parent != nullptr)
+			{
+				parent = nullptr;
+			}
+			Vector2 parentScale = parent->GetScale(world);
+
+			mPos = RotateVector(GetPos(world) - parent->GetPos(world), -parent->GetRotation(world));
+			mPos.x /= parentScale.x;
+			mPos.y /= parentScale.y;
+
+			mRotation -= parent->GetRotation(world);
+			mScale = Vector2(mScale.x / parentScale.x, mScale.y / parentScale.y);
+		}
+		mParent = parent;
+	}
+
+	GameEntity* GameEntity::Parent()
+	{
+		return mParent;
+	}
 
 
 #pragma endregion
 
-void GameEntity::Translate(Vector2 vec)
-{
-	mPos += vec;
-}
+	void GameEntity::Translate(Vector2 vec)
+	{
+		mPos += vec;
+	}
 
-void GameEntity::Rotate(float amount)
-{
-	mRotation += amount;
-}
+	void GameEntity::Rotate(float amount)
+	{
+		mRotation += amount;
+	}
 
 #pragma region Update/Render
-void GameEntity::Update()
-{
-}
-void GameEntity::Render()
-{
-}
+	void GameEntity::Update()
+	{
+	}
+	void GameEntity::Render()
+	{
+	}
 #pragma endregion
+}
 
