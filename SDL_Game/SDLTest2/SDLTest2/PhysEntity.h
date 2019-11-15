@@ -15,5 +15,6 @@ public:
 protected:
 	std::vector<Collider*> mColliders;
 	void AddCollider(Collider* collider, Vector2 localPos = VEC2_ZERO);
+	Collider* mBroadPhaseCollider;
 };
 

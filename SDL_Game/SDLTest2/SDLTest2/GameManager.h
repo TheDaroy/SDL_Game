@@ -1,8 +1,11 @@
 #pragma once
 
-#include "AnimatedTexture.h"
+
 #include "InputManager.h"
 #include "AudioManager.h"
+#include "Timer.h"
+#include "AnimatedTexture.h"
+#include "Texture.h"
 namespace QuickSDL {
 	class GameManager
 	{
@@ -20,7 +23,7 @@ namespace QuickSDL {
 		AudioManager* mAudioMgr;
 
 		SDL_Event mEvent;
-		Texture* mTexture;
+		AnimatedTexture* mTexture;
 		Texture* mTexture2;
 		Texture* mTexture3;
 

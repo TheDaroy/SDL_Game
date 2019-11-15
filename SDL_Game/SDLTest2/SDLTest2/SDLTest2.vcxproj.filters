@@ -75,6 +75,12 @@
     <ClInclude Include="PhysEntity.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="CircleCollider.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp">
@@ -111,6 +117,12 @@
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
     <ClCompile Include="PhysEntity.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleCollider.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
