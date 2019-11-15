@@ -25,4 +25,5 @@ BoxCollider::~BoxCollider()
 void BoxCollider::AddVert(int index, Vector2 pos)
 {
 	mVerts[index] = new GameEntity(pos);
+	mVerts[index]->Parent(this);
 }
