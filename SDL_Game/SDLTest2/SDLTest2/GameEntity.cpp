@@ -27,7 +27,7 @@ namespace QuickSDL {
 	Vector2 GameEntity::GetPos(SPACE space)
 	{
 
-		if (space == local || mParent == NULL)
+		if (space == local || mParent == nullptr)
 		{
 			return mPos;
 		}
@@ -74,6 +74,7 @@ namespace QuickSDL {
 	}
 	Vector2 GameEntity::GetScale(SPACE space)
 	{
+		
 		if (space == local || mParent == nullptr)
 		{
 			return mScale;
@@ -100,19 +101,21 @@ namespace QuickSDL {
 
 	void GameEntity::Parent(GameEntity* parent)
 	{
-
+		
 
 		if (parent == nullptr)
 		{
+			
 			mPos = GetPos(world);
 			mRotation = GetRotation(world);
 			mScale = GetScale(world);
 		}
 		else
 		{
+			
 			if (parent != nullptr)
 			{
-				parent = nullptr;
+				Parent(nullptr);
 			}
 			Vector2 parentScale = parent->GetScale(world);
 

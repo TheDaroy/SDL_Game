@@ -22,6 +22,7 @@ namespace QuickSDL {
 		Inputmanager* mInputManager;
 		AudioManager* mAudioMgr;
 
+		GameEntity* test1;
 		SDL_Event mEvent;
 		AnimatedTexture* mTexture;
 		Texture* mTexture2;
