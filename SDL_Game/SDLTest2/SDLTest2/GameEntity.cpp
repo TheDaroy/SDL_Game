@@ -2,16 +2,15 @@
 #include <iostream>
 namespace QuickSDL {
 #pragma region Struct/De-Struct
-	GameEntity::GameEntity(float x, float y)
+	GameEntity::GameEntity(Vector2 pos)
 	{
-		mPos.x = x;
-		mPos.y = y;
-
+		mPos = pos;
 		mRotation = 0;
-
+		mActive = true;
 		mParent = nullptr;
 		mScale = VEC2_ONE;
 	}
+
 
 	GameEntity::~GameEntity()
 	{

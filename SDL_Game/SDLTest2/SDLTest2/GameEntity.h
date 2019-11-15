@@ -7,7 +7,8 @@ namespace QuickSDL {
 		enum SPACE { local = 0, world = 1 };
 
 #pragma region Functions
-		GameEntity(float x = 0, float y = 0);
+		GameEntity(Vector2 pos = VEC2_ZERO);
+		
 		~GameEntity();
 
 		void Pos(Vector2 pos);

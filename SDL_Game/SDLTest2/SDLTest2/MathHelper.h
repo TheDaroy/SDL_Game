@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 #include <math.h>
 namespace QuickSDL {
 #define PI 3.14159265
@@ -57,6 +57,23 @@ namespace QuickSDL {
 		return Vector2(lHS.x * rHS, lHS.y * rHS);
 	}
 
+	inline Vector2 operator *(const float& lHS, const Vector2& rHS)
+	{
+		return Vector2(lHS * rHS.x, lHS* rHS.y);
+	}
+	
+	inline Vector2 operator /(const Vector2& lHS, const float& rHS)
+	{
+		return Vector2(lHS.x / rHS, lHS.y / rHS);
+	}
+
+	inline Vector2 operator /(const float& lHS, const Vector2& rHS)
+	{
+		return Vector2(lHS / rHS.x, lHS / rHS.y);
+	}
+	
+	
+	
 	inline Vector2 RotateVector(const Vector2& vec, float angle)
 	{
 		float radToAngle = (float)(angle * DEG_TO_RAD);
