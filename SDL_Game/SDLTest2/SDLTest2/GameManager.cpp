@@ -32,7 +32,7 @@ namespace QuickSDL {
 
 		mTexture2 = new Texture("Hello World", "Font1.ttf", 100, { 255,0,0 });
 		mTexture2->Pos(Vector2(500, 200));
-		mTexture2->Parent(test1);
+		//mTexture2->Parent(test1);
 
 		mTexture3 = new Texture("SpaceShipSpriteSheet.png", 0, 0, 40, 38);
 		mTexture3->Pos(Vector2(200, 200));

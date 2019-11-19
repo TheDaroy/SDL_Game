@@ -32,10 +32,20 @@ namespace QuickSDL {
 			return mPos;
 		}
 
-		Vector2 parentScale = mParent->GetScale(world);
-		Vector2 rotPos = RotateVector(Vector2(mPos.x * parentScale.x, mPos.y * parentScale.y), mParent->GetRotation(local));
+		GameEntity* parent = mParent;
+		Vector2 finalPos = mPos, parentScale = VEC2_ZERO;
 
-		return mParent->GetPos(world) + rotPos;
+		do 
+		{
+			Vector2 parentScale = mParent->GetScale(local);
+			finalPos = RotateVector(Vector2(finalPos.x * parentScale.x, finalPos.y * parentScale.y), parent->GetRotation(local));
+			finalPos += parent->GetPos(local);
+			parent = parent->Parent();
+		} while (parent);
+
+		
+
+		return finalPos;
 	}
 
 #pragma endregion
