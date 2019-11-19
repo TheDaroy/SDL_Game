@@ -1,5 +1,6 @@
 #include "GameManager.h"
 #include <iostream>
+
 namespace QuickSDL {
 	GameManager* GameManager::sInstance = nullptr;
 
@@ -17,7 +18,12 @@ namespace QuickSDL {
 		mAssetManager = Assetmanager::Instance();
 		mInputManager = Inputmanager::Instance();
 		mAudioMgr = AudioManager::Instance();
+		mPhysMgr =  PhysicsManager::Instance();
 
+		mPhysMgr->SetLayerCollisionMask(PhysicsManager::CollisionLayers::Friendly, PhysicsManager::CollisionFlags::Hostile | PhysicsManager::CollisionFlags::HostileProjectiles);
+		mPhysMgr->SetLayerCollisionMask(PhysicsManager::CollisionLayers::FriendlyProjectile, PhysicsManager::CollisionFlags::Hostile);
+		mPhysMgr->SetLayerCollisionMask(PhysicsManager::CollisionLayers::Hostile, PhysicsManager::CollisionFlags::Friendly | PhysicsManager::CollisionFlags::FriendlyProjectile);
+		mPhysMgr->SetLayerCollisionMask(PhysicsManager::CollisionLayers::HostileProjectile, PhysicsManager::CollisionFlags::Friendly);
 
 		test1 = new GameEntity(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5, 80));
 		mTexture = new AnimatedTexture("SpaceShipSpriteSheet.png", 0, 0, 40, 38, 3, 1, AnimatedTexture::horizontal); // (path, Pos.x , Pos.y , W, H, frameCount, animSpeed, animDir)
@@ -35,6 +41,8 @@ namespace QuickSDL {
 
 	GameManager::~GameManager()
 	{
+		PhysicsManager::Release();
+		mPhysMgr = nullptr;
 
 		Assetmanager::Release();
 		mAssetManager = nullptr;

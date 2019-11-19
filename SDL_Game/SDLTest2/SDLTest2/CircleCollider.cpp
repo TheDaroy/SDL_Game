@@ -26,4 +26,9 @@ Vector2 CircleCollider::GetFurthestPoint()
 	return VEC2_RIGHT*(mRadius + GetPos(GameEntity::local).Magnitude());
 }
 
+float CircleCollider::GetRadius()
+{
+	return mRadius;
+}
+
 

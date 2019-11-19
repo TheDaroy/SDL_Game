@@ -6,10 +6,19 @@
 #pragma region construct/de-struct
 PhysicsManager::PhysicsManager()
 {
+	mLastId = 0;
+	for (unsigned int i = 0; i < static_cast<unsigned int>(CollisionLayers::Maxlayers); i++)
+	{
+		mLayerMasks[i] = std::bitset<static_cast<unsigned int>(CollisionLayers::Maxlayers)>(static_cast<unsigned int>(CollisionFlags::None));
+	}
 }
 
 PhysicsManager::~PhysicsManager()
 {
+	for (unsigned int i = 0; i < static_cast<unsigned int>(CollisionLayers::Maxlayers);i++)
+	{
+		mCollisionLayers[i].clear();
+	}
 }
 #pragma endregion
 
@@ -60,6 +69,26 @@ void PhysicsManager::UnregisterEntity(unsigned long id)
 
 void PhysicsManager::Update()
 {
+	for (unsigned int i = 0; i < static_cast<unsigned int>(CollisionLayers::Maxlayers); i++)
+	{
+		for (unsigned int j = 0; j < static_cast<unsigned int>(CollisionLayers::Maxlayers); i++)
+		{
+			if (mLayerMasks[i].test(j) && i <= j)
+			{
+				for (unsigned int k = 0; k<mCollisionLayers[i].size(); k++)
+				{
+					for (unsigned int l = 0; l < mCollisionLayers[j].size(); l++)
+					{
+						if (mCollisionLayers[i][k]->CheckCollision(mCollisionLayers[j][i]))
+						{
+							mCollisionLayers[i][k]->Hit(mCollisionLayers[j][l]);
+							mCollisionLayers[j][l]->Hit(mCollisionLayers[i][k]);
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 

@@ -81,6 +81,23 @@ namespace QuickSDL {
 		((float)(vec.x * cos(radToAngle) - vec.y * sin(radToAngle)),
 			(float)(vec.x * sin(radToAngle) + vec.y * cos(radToAngle)));
 	}
+	inline float Dot(const Vector2& vec1, Vector2& vec2)
+	{
+		return vec1.x * vec2.x + vec1.y * vec2.y;
+	}
+	inline float Clamp(const float& value, const float& min, const float& max)
+	{
+		if (value > max)
+		{
+			return max;
+		}
+		if (value < min)
+		{
+			return min;
+		}
+		return value;
+	}
+
 
 	const Vector2 VEC2_ZERO = { 0.0f,0.0f };
 	const Vector2 VEC2_ONE = { 1.0f,1.0f };

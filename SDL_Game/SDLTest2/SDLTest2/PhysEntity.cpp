@@ -1,10 +1,11 @@
 #include "PhysEntity.h"
-#include "CircleCollider.h"
-
+#include "PhysicsHelper.h"
+#include "PhysicsManager.h"
 
 PhysEntity::PhysEntity()
 {
 	mBroadPhaseCollider = nullptr;
+	mID = 0;
 }
 
 PhysEntity::~PhysEntity()
@@ -19,6 +20,10 @@ PhysEntity::~PhysEntity()
 	{
 		delete mBroadPhaseCollider;
 		mBroadPhaseCollider = nullptr;
+	}
+	if (mID != 0)
+	{
+		PhysicsManager::Instance()->UnregisterEntity(mID);
 	}
 }
 
@@ -37,6 +42,49 @@ void PhysEntity::Render()
 unsigned long PhysEntity::GetId()
 {
 	return mID;
+}
+
+bool PhysEntity::CheckCollision(PhysEntity* other)
+{
+	if (IgnoreCollisions() || other->IgnoreCollisions())
+	{
+		return false;
+	}
+
+	bool narrowPhaseCheck = false;
+	if (mBroadPhaseCollider && other->mBroadPhaseCollider)
+	{
+		narrowPhaseCheck = ColliderColliderCheck(mBroadPhaseCollider, other->mBroadPhaseCollider);
+	}
+	else
+	{
+		narrowPhaseCheck = true;
+	}
+
+	if (narrowPhaseCheck)
+	{
+		for (int i = 0; i < mColliders.size(); i++)
+		{
+			for (int j = 0; j < mColliders.size(); j++)
+			{
+				if (ColliderColliderCheck(mColliders[i], other->mColliders[j]))
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+void PhysEntity::Hit(PhysEntity* other)
+{
+
+}
+
+bool PhysEntity::IgnoreCollisions() 
+{
+	return false;
 }
 
 

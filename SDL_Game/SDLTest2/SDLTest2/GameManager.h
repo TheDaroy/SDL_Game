@@ -5,6 +5,9 @@
 #include "AudioManager.h"
 #include "Timer.h"
 #include "AnimatedTexture.h"
+#include "AudioManager.h"
+#include "Timer.h"
+#include "PhysicsManager.h"
 #include "Texture.h"
 namespace QuickSDL {
 	class GameManager
@@ -21,6 +24,7 @@ namespace QuickSDL {
 		Assetmanager* mAssetManager;
 		Inputmanager* mInputManager;
 		AudioManager* mAudioMgr;
+		PhysicsManager* mPhysMgr;
 
 		GameEntity* test1;
 		SDL_Event mEvent;
