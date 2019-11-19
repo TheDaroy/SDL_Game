@@ -34,6 +34,11 @@ void PhysEntity::Render()
 	}
 }
 
+unsigned long PhysEntity::GetId()
+{
+	return mID;
+}
+
 
 void PhysEntity::AddCollider(Collider* collider, Vector2 localPos)
 {

@@ -150,6 +150,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="PhysEntity.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
