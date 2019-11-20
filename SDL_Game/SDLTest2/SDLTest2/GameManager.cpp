@@ -1,10 +1,13 @@
 #include "GameManager.h"
 #include <iostream>
+#include <time.h>
 namespace QuickSDL {
 	GameManager* GameManager::sInstance = nullptr;
 
 	GameManager::GameManager()
 	{
+		srand(time(0));
+
 		mQuit = false;
 		mGraphics = Graphics::Instance();
 
@@ -24,12 +27,16 @@ namespace QuickSDL {
 		mTexture->Pos(Vector2(100, 200));
 
 
-		mTexture2 = new Texture("Hello World", "Font1.ttf", 100, { 255,0,0 });
+		mTexture2 = new Texture("", "Font1.ttf", 100, { 255,0,0 });
 		mTexture2->Pos(Vector2(500, 200));
 		mTexture2->Parent(test1);
 
 		mTexture3 = new Texture("SpaceShipSpriteSheet.png", 0, 0, 40, 38);
 		mTexture3->Pos(Vector2(200, 200));
+		
+		mStars = BackgroundStars::Instance();
+
+		mStartScreen = new StartScreen();
 
 	}
 
@@ -53,6 +60,12 @@ namespace QuickSDL {
 
 		delete mTexture;
 		mTexture = nullptr;
+
+		BackgroundStars::Release();
+		mStars = NULL;
+
+		delete mStartScreen;
+		mStartScreen = NULL;
 	}
 
 	void GameManager::EarlyUpdate()
@@ -84,6 +97,8 @@ namespace QuickSDL {
 			std::cout << "Left Mouse Pressed" << std::endl;
 		}
 
+		mStars->Update();
+		mStartScreen->Update();
 
 		mTexture->Update();
 		mTexture->Rotate(10 * mTimer->DeltaTime());
@@ -98,6 +113,8 @@ namespace QuickSDL {
 	void GameManager::Render()
 	{
 		mGraphics->ClearBackBuffer();
+		mStars->Render();
+		mStartScreen->Render();
 		mTexture->Render();
 		mTexture2->Render();
 		mTexture3->Render();

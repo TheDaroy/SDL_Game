@@ -6,6 +6,9 @@
 #include "Timer.h"
 #include "AnimatedTexture.h"
 #include "Texture.h"
+#include "StartScreen.h"
+#include "BackgroundStars.h"
+
 namespace QuickSDL {
 	class GameManager
 	{
@@ -24,9 +27,14 @@ namespace QuickSDL {
 
 		GameEntity* test1;
 		SDL_Event mEvent;
+
+		BackgroundStars* mStars;
+
 		AnimatedTexture* mTexture;
 		Texture* mTexture2;
 		Texture* mTexture3;
+
+		StartScreen* mStartScreen;
 
 		GameManager();
 		~GameManager();

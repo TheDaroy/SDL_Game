@@ -72,7 +72,19 @@ namespace QuickSDL {
 		return Vector2(lHS / rHS.x, lHS / rHS.y);
 	}
 	
-	
+	inline Vector2 Lerp(Vector2& start, Vector2& end, float time) {
+		if (time <= 0.0f) {
+			return start;
+		}
+		if (time >= 1.0f) {
+			return end;
+		}
+
+		Vector2 dir = (end - start).Normalized();
+		float mag = (end - start).Magnitude();
+
+		return start + dir * mag * time;
+	}
 	
 	inline Vector2 RotateVector(const Vector2& vec, float angle)
 	{

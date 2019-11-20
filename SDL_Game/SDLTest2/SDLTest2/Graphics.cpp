@@ -132,7 +132,7 @@ namespace QuickSDL {
 			std::cout << "Renderer Initialization Error: " << SDL_GetError() << std::endl;
 			return false;
 		}
-		SDL_SetRenderDrawColor(mRenderer, 0xff, 0xff, 0xff, 0xff);
+		SDL_SetRenderDrawColor(mRenderer, 0x00, 0x00, 0x00, 0x00);
 
 
 

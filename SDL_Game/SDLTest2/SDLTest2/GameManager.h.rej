@@ -1,0 +1,9 @@
+diff a/SDL_Game/SDLTest2/SDLTest2/GameManager.h b/SDL_Game/SDLTest2/SDLTest2/GameManager.h	(rejected hunks)
+@@ -22,6 +22,7 @@
+ 		Inputmanager* mInputManager;
+ 		AudioManager* mAudioMgr;
+ 
++		GameEntity* test1;
+ 		SDL_Event mEvent;
+ 		AnimatedTexture* mTexture;
+ 		Texture* mTexture2;
