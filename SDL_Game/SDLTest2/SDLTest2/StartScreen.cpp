@@ -6,18 +6,29 @@ StartScreen::StartScreen() {
 	mInput = Inputmanager::Instance();
 
 	//Top Bar Entities 
-	mTopBar = new GameEntity(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5f, 70.0f));
+	mTopBar = new GameEntity(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5f, 40.0f));
 	mPlayerOne = new Texture("1UP", "font1.ttf", 32, { 200, 0 ,0 });
 	mPlayerTwo = new Texture("2UP", "font1.ttf", 32, { 200, 0 ,0 });
 	mHiScore = new Texture("HI-SCORE", "font1.ttf", 32, { 200, 0 ,0 });
+	mPlayerOneScore = new Scoreboard();
+	mPlayerTwoScore = new Scoreboard();
+	mTopScore = new Scoreboard();
 
 	mPlayerOne->Parent(mTopBar);
 	mPlayerTwo->Parent(mTopBar);
 	mHiScore->Parent(mTopBar);
+	mPlayerOneScore->Parent(mTopBar);
+	mPlayerTwoScore->Parent(mTopBar);
+	mTopScore->Parent(mTopBar);
 
 	mPlayerOne->Pos(Vector2(-Graphics::Instance()->SCREEN_WIDTH * 0.35f, 0.0f));
 	mPlayerTwo->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.35f, 0.0f));
 	mHiScore->Pos(VEC2_ZERO);
+
+	float scoreYOffset = 30.0f;
+	mPlayerOneScore->Pos(Vector2(-Graphics::Instance()->SCREEN_WIDTH * 0.35f, scoreYOffset));
+	mPlayerTwoScore->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.35f, scoreYOffset));
+	mTopScore->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.2, scoreYOffset));
 
 	mTopBar->Parent(this);
 
@@ -67,14 +78,8 @@ StartScreen::StartScreen() {
 
 	mBotBar->Parent(this);
 
-	//Screen Animation Variables
-	mAnimationStartPos = Vector2(0.0f, Graphics::Instance()->SCREEN_HEIGHT);
-	mAnimationEndPos = VEC2_ZERO;
-	mAnimationTotalTime = 5.0f;
-	mAnimationTimer = 0.0f;
-	mAnimationDone = false;
-
-	Pos(mAnimationStartPos);
+	//Screen Animation
+	ResetAnimation();
 
 	mStars = BackgroundStars::Instance();
 	mStars->Scroll(true);
@@ -90,6 +95,12 @@ StartScreen::~StartScreen() {
 	mPlayerTwo = NULL;
 	delete mHiScore;
 	mHiScore = NULL;
+	delete mPlayerOneScore;
+	mPlayerOneScore = NULL;
+	delete mPlayerTwoScore;
+	mPlayerTwoScore = NULL;
+	delete mTopScore;
+	mTopScore = NULL;
 
 	//Freeing Logo Entities
 	delete mLogo;
@@ -116,6 +127,21 @@ StartScreen::~StartScreen() {
 	mDates = NULL;
 	delete mRights;
 	mRights = NULL;
+}
+
+void StartScreen::ResetAnimation() {
+	//Screen Animation Variables
+	mAnimationStartPos = Vector2(0.0f, Graphics::Instance()->SCREEN_HEIGHT);
+	mAnimationEndPos = VEC2_ZERO;
+	mAnimationTotalTime = 5.0f;
+	mAnimationTimer = 0.0f;
+	mAnimationDone = false;
+
+	Pos(mAnimationStartPos);
+}
+
+int StartScreen::SelectedMode() {
+	return mSelectedMode;
 }
 
 void StartScreen::ChangeSelectedMode(int change) {
@@ -161,6 +187,9 @@ void StartScreen::Render() {
 	mPlayerOne->Render();
 	mPlayerTwo->Render();
 	mHiScore->Render();
+	mPlayerOneScore->Render();
+	mPlayerTwoScore->Render();
+	mTopScore->Render();
 
 	if (!mAnimationDone) {
 		mLogo->Render();

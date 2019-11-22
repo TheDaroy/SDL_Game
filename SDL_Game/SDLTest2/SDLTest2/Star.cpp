@@ -6,7 +6,7 @@ void Star::Scroll(bool b) {
 	sScroll = b;
 }
 
-Star::Star(int layer) : Texture("stars.png", 0, 0, 1, 1) {
+Star::Star(int layer) : Texture("stars.png", 0, 0, 4, 4) {
 	mTimer = Timer::Instance();
 
 	int starColor = rand() % 4;

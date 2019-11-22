@@ -151,6 +151,8 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="PhysEntity.h" />
+    <ClInclude Include="Scoreboard.h" />
+    <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="StarLayer.h" />
     <ClInclude Include="StartScreen.h" />
@@ -171,6 +173,8 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PhysEntity.cpp" />
+    <ClCompile Include="Scoreboard.cpp" />
+    <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="StarLayer.cpp" />
     <ClCompile Include="StartScreen.cpp" />
