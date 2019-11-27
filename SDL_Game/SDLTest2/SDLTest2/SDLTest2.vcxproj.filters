@@ -105,6 +105,9 @@
     <ClInclude Include="PlaySideBar.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Graphics.cpp">
@@ -171,6 +174,9 @@
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="PlaySideBar.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>

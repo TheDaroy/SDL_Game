@@ -22,12 +22,32 @@ private:
 	bool mPlayerOneLabelVisible;
 	Scoreboard* mPlayerOneScore;
 
+	static const int MAX_SHIP_TEXTURES = 5;
+	GameEntity* mShips;
+	Texture* mShipTextures[MAX_SHIP_TEXTURES];
+	Scoreboard* mTotalShipsLabel;
+	int mTotalShips;
+
+	GameEntity* mFlags;
+	std::vector<Texture*> mFlagTextures;
+	int mRemainingLevels;
+	int mFlagXOffset;
+	float mFlagTimer;
+	float mFlagInterval;
+
+private:
+	void ClearFlags();
+	void AddNextFlag();
+	void AddFlag(std::string filename, float width, int value);
+
 public:
 	PlaySideBar();
 	~PlaySideBar();
 
 	void SetHighScore(int score);
 	void SetPlayerScore(int score);
+	void SetShips(int lives);
+	void SetLevel(int level);
 
 	void Update();
 	void Render();
