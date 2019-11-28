@@ -50,7 +50,7 @@ PlaySideBar::PlaySideBar() {
 
 	mFlags = new GameEntity();
 	mFlags->Parent(this);
-	mFlags->Pos(Vector2(-36.0f, 500.0f));
+	mFlags->Pos(Vector2(-50.0f, 500.0f));
 
 	mFlagTimer = 0.0f;
 	mFlagInterval = 0.2f;

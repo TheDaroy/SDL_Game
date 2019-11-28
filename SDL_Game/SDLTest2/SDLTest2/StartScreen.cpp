@@ -28,13 +28,13 @@ StartScreen::StartScreen() {
 	float scoreYOffset = 30.0f;
 	mPlayerOneScore->Pos(Vector2(-Graphics::Instance()->SCREEN_WIDTH * 0.35f, scoreYOffset));
 	mPlayerTwoScore->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.35f, scoreYOffset));
-	mTopScore->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.2, scoreYOffset));
+	mTopScore->Pos(Vector2(0.0f, scoreYOffset));
 
 	mTopBar->Parent(this);
 
 	//Logo Entities
 	mLogo = new Texture("Spritesheet.png", 0, 0, 360, 180);
-	mAnimatedLogo = new AnimatedTexture("Spritesheet.png", 0, 0, 360, 180, 5, 0.2f, AnimatedTexture::vertical);
+	mAnimatedLogo = new AnimatedTexture("Spritesheet.png", 600, 100, 360, 180, 5, 1.0f, AnimatedTexture::vertical);
 
 	mLogo->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5f, Graphics::Instance()->SCREEN_HEIGHT * 0.35f));
 	mAnimatedLogo->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5f, Graphics::Instance()->SCREEN_HEIGHT * 0.35f));
@@ -54,27 +54,27 @@ StartScreen::StartScreen() {
 
 	mOnePlayerMode->Pos(Vector2(0.0f, -30.0f));
 	mTwoPlayerMode->Pos(Vector2(0.0f, 30.0f));
-	mCursor->Pos(Vector2(-170.0f, -35.0f));
+	mCursor->Pos(Vector2(-120.0f, -30.0f));
 
 	mPlayModes->Parent(this);
 
-	mCursorStartPos = Vector2(-170.0f, -35.0f);
-	mCursorOffset = Vector2(0.0f, 70.0f);
+	mCursorStartPos = Vector2(-120.0f, -30.0f);
+	mCursorOffset = Vector2(0.0f, 60.0f);
 	mSelectedMode = 0;
 
 	//Bottom Bar Entities
-	mBotBar = new GameEntity(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5f, Graphics::Instance()->SCREEN_HEIGHT * 0.75f));
-	mNamco = new Texture("NAMCOT", "font1.ttf", 36, { 200, 0 ,0 });
-	mDates = new Texture("1981 1985 NAMCO LTD.", "font1.ttf", 32, { 230, 230, 230 });
-	mRights = new Texture("ALL RIGHTS RESERVED", "font1.ttf", 32, { 230, 230, 230 });
+	mBotBar = new GameEntity(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5f, Graphics::Instance()->SCREEN_HEIGHT * 0.80f));
+	mNamco = new Texture("LEONARD KIA ROY", "font1.ttf", 36, { 200, 0 ,0 });
+	mDates = new Texture("2019 - 2019 FUTUREGAMES", "font1.ttf", 32, { 230, 230, 230 });
+	mRights = new Texture("NO RIGHTS RESERVED", "font1.ttf", 32, { 230, 230, 230 });
 
 	mNamco->Parent(mBotBar);
 	mDates->Parent(mBotBar);
 	mRights->Parent(mBotBar);
 
 	mNamco->Pos(VEC2_ZERO);
-	mDates->Pos(Vector2(0.0f, 50.0f));
-	mRights->Pos(Vector2(0.0f, 100.0f));
+	mDates->Pos(Vector2(0.0f, 45.0f));
+	mRights->Pos(Vector2(0.0f, 80.0f));
 
 	mBotBar->Parent(this);
 

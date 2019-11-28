@@ -23,15 +23,15 @@ namespace QuickSDL {
 
 
 		test1 = new GameEntity(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5, 80));
-		mTexture = new AnimatedTexture("SpaceShipSpriteSheet.png", 0, 0, 40, 38, 3, 1, AnimatedTexture::horizontal); // (path, Pos.x , Pos.y , W, H, frameCount, animSpeed, animDir)
+		mTexture = new AnimatedTexture("", 0, 0, 40, 38, 3, 1, AnimatedTexture::horizontal); // (path, Pos.x , Pos.y , W, H, frameCount, animSpeed, animDir)
 		mTexture->Pos(Vector2(100, 200));
 
 
-		mTexture2 = new Texture("", "Font1.ttf", 100, { 255,0,0 });
+		mTexture2 = new Texture("", "font1.ttf", 100, { 255,0,0 });
 		mTexture2->Pos(Vector2(500, 200));
 		mTexture2->Parent(test1);
 
-		mTexture3 = new Texture("SpaceShipSpriteSheet.png", 0, 0, 40, 38);
+		mTexture3 = new Texture("", 0, 0, 40, 38);
 		mTexture3->Pos(Vector2(200, 200));
 
 		mScreenManager = ScreenManager::Instance();
