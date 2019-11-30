@@ -16,8 +16,8 @@ Player::Player()
 	mShip->Parent(this);
 	mShip->Pos(VEC2_ZERO);
 
-	mMoveSpeed = 100.0f;
-	mMoveBounds = Vector2(0.9f, 800.0f);
+	mMoveSpeed = 200.0f;
+	mMoveBounds = Vector2(20.0f, 600.0f);
 }
 
 Player::~Player()

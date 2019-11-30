@@ -57,7 +57,7 @@ void PlayScreen::StartNewGame() {
 	delete mPlayer;
 	mPlayer = new Player();
 	mPlayer->Parent(this);
-	mPlayer->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.4f, Graphics::Instance()->SCREEN_HEIGHT * 0.8f));
+	mPlayer->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.4f, Graphics::Instance()->SCREEN_HEIGHT * 0.9f));
 	mPlayer->Active(false);
 
 	mStars->Scroll(false);
