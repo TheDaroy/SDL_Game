@@ -12,7 +12,7 @@ Player::Player()
 	mLives = 2;
 
 
-	mShip = new Texture("BLABLABLA.PNG");
+	mShip = new Texture("ship.png");
 	mShip->Parent(this);
 	mShip->Pos(VEC2_ZERO);
 
@@ -33,20 +33,20 @@ void Player::HandleMovement()
 {
 	if (mInput->KeyDown(SDL_SCANCODE_RIGHT))
 	{
-		Translate(VEC2_RIGHT * mMoveSpeed * mTimer->DeltaTime());
+		Translate(VEC2_UP * mMoveSpeed * mTimer->DeltaTime());
 	}
 	else if(mInput->KeyDown(SDL_SCANCODE_LEFT))
 	{
-		Translate(-VEC2_RIGHT * mMoveSpeed * mTimer->DeltaTime());
+		Translate(-VEC2_UP * mMoveSpeed * mTimer->DeltaTime());
 	}
 
-	Vector2 pos = Pos(local);
+	Vector2 pos = GetPos(local);
 	if (pos.x < mMoveBounds.x)
 		pos.x = mMoveBounds.x;
 	else if (pos.x > mMoveBounds.y)
 		pos.x = mMoveBounds.y;
 
-	Pos(pos)
+	Pos(pos);
 }
 
 void Player::Visible(bool visible)
@@ -82,10 +82,7 @@ void Player::Update()
 	}
 	else
 	{
-		if (Active())
-		{
-			HandleMovement()
-		}
+			HandleMovement();
 	}
 }
 

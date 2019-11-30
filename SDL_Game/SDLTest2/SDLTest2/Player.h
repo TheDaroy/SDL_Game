@@ -7,10 +7,6 @@ using namespace QuickSDL;
 
 class Player : public GameEntity
 {
-public:
-	Player();
-	~Player();
-
 private:
 	Timer* mTimer;
 	Inputmanager* mInput;

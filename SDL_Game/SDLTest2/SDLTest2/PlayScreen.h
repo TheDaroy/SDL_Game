@@ -5,6 +5,7 @@
 #include "BackgroundStars.h"
 #include "PlaySideBar.h"
 #include "Level.h"
+#include "Player.h"
 
 class PlayScreen : public GameEntity {
 private:
@@ -26,6 +27,8 @@ private:
 	Level* mLevel;
 	bool mLevelStarted;
 	int mCurrentStage;
+
+	Player* mPlayer;
 
 private:
 	void StartNextLevel();

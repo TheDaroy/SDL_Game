@@ -1,6 +1,6 @@
 #include "Level.h"
 
-Level::Level(int stage, PlaySideBar* sideBar) {
+Level::Level(int stage, PlaySideBar* sideBar, Player* player) {
 	mTimer = Timer::Instance();
 	mSideBar = sideBar;
 	mSideBar->SetLevel(stage);
@@ -29,6 +29,8 @@ Level::Level(int stage, PlaySideBar* sideBar) {
 
 	mReadyLabelOnScreen = mStageLabelOffScreen;
 	mReadyLabelOffScreen = mReadyLabelOnScreen + 3.0f;
+
+	mPlayer = player;
 }
 
 Level::~Level() {
@@ -43,6 +45,8 @@ Level::~Level() {
 
 	delete mReadyLabel;
 	mReadyLabel = NULL;
+
+	mPlayer = NULL;
 }
 
 void Level::StartStage() {
@@ -60,6 +64,8 @@ void Level::Update() {
 			}
 			else if (mLabelTimer >= mReadyLabelOffScreen) {
 				StartStage();
+				mPlayer->Active(true);
+				mPlayer->Visible(true);
 			}
 		}
 	}
