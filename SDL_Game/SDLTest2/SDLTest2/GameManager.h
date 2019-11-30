@@ -27,6 +27,7 @@ namespace QuickSDL {
 		AudioManager* mAudioMgr;
 		EnemyManager* mEnemyMgr;
 		ScreenManager* mScreenManager;
+		BackgroundStars* mStars;
 
 		GameEntity* test1;
 		SDL_Event mEvent;

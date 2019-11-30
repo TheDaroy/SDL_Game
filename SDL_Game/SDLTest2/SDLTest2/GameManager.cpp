@@ -28,7 +28,7 @@ namespace QuickSDL {
 		mTexture->Pos(Vector2(200, 200));
 
 
-		mTexture2 = new Texture("Hello World", "Font1.ttf", 100, { 255,0,0 });
+		mTexture2 = new Texture("", "Font1.ttf", 100, { 255,0,0 });
 		mTexture2->Pos(Vector2(400, 400));
 		mTexture2->Parent(test1);
 
@@ -38,11 +38,15 @@ namespace QuickSDL {
 		enemy1 = new EnemyTest();
 		enemy1->Pos(Vector2(300,300));
 
+		mStars = BackgroundStars::Instance();
 		mScreenManager = ScreenManager::Instance();
 	}
 
 	GameManager::~GameManager()
 	{
+		BackgroundStars::Release();
+		mStars = nullptr;
+
 		ScreenManager::Release();
 		mScreenManager = nullptr;
 
@@ -72,13 +76,14 @@ namespace QuickSDL {
 
 	void GameManager::Update() //Inputs Etc
 	{
-		
+		mStars->Update();
+		mScreenManager->Update();
 		mEnemyMgr->UpdateAll();
 		//std::cout << enemy1->GetPos().x << "  " << enemy1->GetPos().y << std::endl;
 		mTexture3->Translate(mTexture3->MoveTowards(mTexture->GetPos())  * 50 * mTimer->DeltaTime());
 		mPlayer->Update();
 		mTexture->Rotate(10 * mTimer->DeltaTime());
-
+		
 	}
 
 	void GameManager::LateUpdate()
@@ -93,6 +98,8 @@ namespace QuickSDL {
 		//mEnemyMgr->RenderEnemy();
 		mPlayer->Render();
 		mEnemyMgr->RenderEverything();
+		mStars->Render();
+		mScreenManager->Render();
 		mTexture->Render();
 		mTexture2->Render();
 		mTexture3->Render();
