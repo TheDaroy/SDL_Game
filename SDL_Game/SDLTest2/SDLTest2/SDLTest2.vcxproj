@@ -141,6 +141,7 @@
     <ClInclude Include="AnimatedTexture.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="BackgroundStars.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
@@ -150,10 +151,19 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MovementHelper.h" />
     <ClInclude Include="PhysEntity.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayScreen.h" />
+    <ClInclude Include="PlaySideBar.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Scoreboard.h" />
+    <ClInclude Include="ScreenManager.h" />
+    <ClInclude Include="Star.h" />
+    <ClInclude Include="StarLayer.h" />
+    <ClInclude Include="StartScreen.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
@@ -161,6 +171,7 @@
     <ClCompile Include="AnimatedTexture.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="BackgroundStars.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -170,10 +181,19 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MovementHelper.cpp" />
     <ClCompile Include="PhysEntity.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayScreen.cpp" />
+    <ClCompile Include="PlaySideBar.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Scoreboard.cpp" />
+    <ClCompile Include="ScreenManager.cpp" />
+    <ClCompile Include="Star.cpp" />
+    <ClCompile Include="StarLayer.cpp" />
+    <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>

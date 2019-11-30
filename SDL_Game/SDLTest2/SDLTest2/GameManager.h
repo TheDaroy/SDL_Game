@@ -8,6 +8,8 @@
 #include "Texture.h"
 #include "EnemyManager.h"
 #include "EnemyTest.h"
+#include "ScreenManager.h"
+#include "Player.h"
 namespace QuickSDL {
 	class GameManager
 	{
@@ -24,12 +26,15 @@ namespace QuickSDL {
 		Inputmanager* mInputManager;
 		AudioManager* mAudioMgr;
 		EnemyManager* mEnemyMgr;
+		ScreenManager* mScreenManager;
+
 		GameEntity* test1;
 		SDL_Event mEvent;
 		AnimatedTexture* mTexture;
 		Texture* mTexture2;
 		Texture* mTexture3;
 		EnemyTest* enemy1;
+		Player* mPlayer;
 
 		GameManager();
 		~GameManager();

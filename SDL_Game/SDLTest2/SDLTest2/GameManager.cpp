@@ -20,6 +20,9 @@ namespace QuickSDL {
 		mAudioMgr = AudioManager::Instance();
 		mEnemyMgr = EnemyManager::Instance();
 
+
+		mPlayer = new Player();
+		mPlayer->Visible(true);
 		test1 = new GameEntity(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5, 80));
 		mTexture = new AnimatedTexture("SpaceShipSpriteSheet.png", 0, 0, 40, 38, 3, 1, AnimatedTexture::horizontal); // (path, Pos.x , Pos.y , W, H, frameCount, animSpeed, animDir)
 		mTexture->Pos(Vector2(200, 200));
@@ -34,10 +37,14 @@ namespace QuickSDL {
 
 		enemy1 = new EnemyTest();
 		enemy1->Pos(Vector2(300,300));
+
+		mScreenManager = ScreenManager::Instance();
 	}
 
 	GameManager::~GameManager()
 	{
+		ScreenManager::Release();
+		mScreenManager = nullptr;
 
 		Assetmanager::Release();
 		mAssetManager = nullptr;
@@ -65,31 +72,11 @@ namespace QuickSDL {
 
 	void GameManager::Update() //Inputs Etc
 	{
-		if (mInputManager->KeyPressed(SDL_SCANCODE_W))
-		{
-			mAudioMgr->PlaySFX("VictorySound.wav");
-			std::cout << "W Pressed" << std::endl;
-		}
-		if (mInputManager->KeyReleased(SDL_SCANCODE_W))
-		{
-			mAudioMgr->PlaySFX("VictorySound.wav");
-		}
-		if (mInputManager->MouseButtonPressed(Inputmanager::middle))
-		{
-			std::cout << "M Mouse Pressed" << std::endl;
-		}
-		if (mInputManager->MouseButtonPressed(Inputmanager::back))
-		{
-			std::cout << "Back Mouse Pressed" << std::endl;
-		}
-		if (mInputManager->MouseButtonPressed(Inputmanager::left))
-		{
-			std::cout << "Left Mouse Pressed" << std::endl;
-		}
+		
 		mEnemyMgr->UpdateAll();
 		//std::cout << enemy1->GetPos().x << "  " << enemy1->GetPos().y << std::endl;
 		mTexture3->Translate(mTexture3->MoveTowards(mTexture->GetPos())  * 50 * mTimer->DeltaTime());
-		
+		mPlayer->Update();
 		mTexture->Rotate(10 * mTimer->DeltaTime());
 
 	}
@@ -104,7 +91,7 @@ namespace QuickSDL {
 	{
 		mGraphics->ClearBackBuffer();
 		//mEnemyMgr->RenderEnemy();
-		
+		mPlayer->Render();
 		mEnemyMgr->RenderEverything();
 		mTexture->Render();
 		mTexture2->Render();
