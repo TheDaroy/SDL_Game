@@ -1,4 +1,5 @@
 #include "GameManager.h"
+
 #include <iostream>
 namespace QuickSDL {
 	GameManager* GameManager::sInstance = nullptr;
@@ -17,20 +18,22 @@ namespace QuickSDL {
 		mAssetManager = Assetmanager::Instance();
 		mInputManager = Inputmanager::Instance();
 		mAudioMgr = AudioManager::Instance();
-
+		mEnemyMgr = EnemyManager::Instance();
 
 		test1 = new GameEntity(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.5, 80));
 		mTexture = new AnimatedTexture("SpaceShipSpriteSheet.png", 0, 0, 40, 38, 3, 1, AnimatedTexture::horizontal); // (path, Pos.x , Pos.y , W, H, frameCount, animSpeed, animDir)
-		mTexture->Pos(Vector2(100, 200));
+		mTexture->Pos(Vector2(200, 200));
 
 
 		mTexture2 = new Texture("Hello World", "Font1.ttf", 100, { 255,0,0 });
-		mTexture2->Pos(Vector2(500, 200));
+		mTexture2->Pos(Vector2(400, 400));
 		mTexture2->Parent(test1);
 
 		mTexture3 = new Texture("SpaceShipSpriteSheet.png", 0, 0, 40, 38);
-		mTexture3->Pos(Vector2(200, 200));
+		mTexture3->Pos(Vector2(100, 500));
 
+		enemy1 = new EnemyTest();
+		enemy1->Pos(Vector2(300,300));
 	}
 
 	GameManager::~GameManager()
@@ -83,10 +86,12 @@ namespace QuickSDL {
 		{
 			std::cout << "Left Mouse Pressed" << std::endl;
 		}
-
-
-		mTexture->Update();
+		mEnemyMgr->UpdateAll();
+		//std::cout << enemy1->GetPos().x << "  " << enemy1->GetPos().y << std::endl;
+		mTexture3->Translate(mTexture3->MoveTowards(mTexture->GetPos())  * 50 * mTimer->DeltaTime());
+		
 		mTexture->Rotate(10 * mTimer->DeltaTime());
+
 	}
 
 	void GameManager::LateUpdate()
@@ -98,6 +103,9 @@ namespace QuickSDL {
 	void GameManager::Render()
 	{
 		mGraphics->ClearBackBuffer();
+		//mEnemyMgr->RenderEnemy();
+		
+		mEnemyMgr->RenderEverything();
 		mTexture->Render();
 		mTexture2->Render();
 		mTexture3->Render();
@@ -140,11 +148,7 @@ namespace QuickSDL {
 				Update();
 				LateUpdate();
 				Render();
-
-
 			}
-
-
 		}
 	}
 }

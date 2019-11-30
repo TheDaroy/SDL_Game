@@ -51,6 +51,14 @@ namespace QuickSDL {
 		mGraphics = nullptr;
 
 	}
+	Vector2 Texture::ScaledDimensions()
+	{
+		Vector2 scaledDimensions = GetScale();
+		scaledDimensions.x *= mWidth;
+		scaledDimensions.y *= mHeight;
+
+		return scaledDimensions;
+	}
 #pragma endregion
 
 

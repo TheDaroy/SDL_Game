@@ -1,5 +1,6 @@
 #pragma once
 #include "MathHelper.h"
+
 namespace QuickSDL {
 	class GameEntity {
 
@@ -13,6 +14,8 @@ namespace QuickSDL {
 
 		void Pos(Vector2 pos);
 		Vector2 GetPos(SPACE space = world);
+		Vector2 MoveTowards(Vector2 targetPos);
+		void MoveForward(float speed);
 
 		void Rotation(float rotation);
 		float GetRotation(SPACE space = world);
@@ -26,6 +29,7 @@ namespace QuickSDL {
 		void Parent(GameEntity* parent);
 		GameEntity* Parent();
 		void Translate(Vector2 vec);
+		
 		void Rotate(float amount);
 
 		virtual void Update();
@@ -37,6 +41,7 @@ namespace QuickSDL {
 		Vector2 mScale;
 		bool mActive;
 		GameEntity* mParent;
+		
 
 	};
 }

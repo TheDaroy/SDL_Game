@@ -23,7 +23,7 @@ namespace QuickSDL {
 
 		Texture(std::string text, std::string fontpath, int seize, SDL_Color color);
 		~Texture();
-
+		Vector2 ScaledDimensions();
 		virtual void Render();
 	};
 }

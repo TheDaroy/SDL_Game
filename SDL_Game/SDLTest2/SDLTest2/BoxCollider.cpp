@@ -8,8 +8,7 @@ BoxCollider::BoxCollider(Vector2 size) :Collider(ColliderType::Box)
 	AddVert(3, Vector2(0.5f * size.x, 0.5f * size.y));
 	if (DEBUG_COLLIDERS)
 	{
-		SetDebugTexture(new Texture("BoxCollider.png"));
-		mDebugTexture->Scale(size / 100);
+		
 	}
 }
 

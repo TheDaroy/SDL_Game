@@ -11,7 +11,7 @@ CircleCollider::CircleCollider(float radius, bool broadPhase) : Collider(Collide
 		}
 		else
 		{
-			SetDebugTexture(new Texture("TestCircle.png"));
+			
 		}
 		mDebugTexture->Scale(VEC2_ONE * (radius * 2 / 100));
 	}

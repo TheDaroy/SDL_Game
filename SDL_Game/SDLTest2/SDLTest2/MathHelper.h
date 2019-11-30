@@ -3,7 +3,6 @@
 namespace QuickSDL {
 #define PI 3.14159265
 #define DEG_TO_RAD PI / 180.0f
-
 	struct Vector2 {
 		float x;
 		float y;
@@ -26,18 +25,19 @@ namespace QuickSDL {
 			return Vector2(x / mag, y / mag);
 		}
 
+		
 
 		Vector2& operator += (const Vector2& rhs)
 		{
-			y += rhs.x;
-			x += rhs.y;
+			y += rhs.y;
+			x += rhs.x;
 
 			return *this;
 		}
 		Vector2& operator -= (const Vector2& rhs)
 		{
-			y -= rhs.x;
-			x -= rhs.y;
+			y -= rhs.y;
+			x -= rhs.x;
 
 			return *this;
 		}
@@ -72,8 +72,6 @@ namespace QuickSDL {
 		return Vector2(lHS / rHS.x, lHS / rHS.y);
 	}
 	
-	
-	
 	inline Vector2 RotateVector(const Vector2& vec, float angle)
 	{
 		float radToAngle = (float)(angle * DEG_TO_RAD);
@@ -81,6 +79,8 @@ namespace QuickSDL {
 		((float)(vec.x * cos(radToAngle) - vec.y * sin(radToAngle)),
 			(float)(vec.x * sin(radToAngle) + vec.y * cos(radToAngle)));
 	}
+	
+	
 
 	const Vector2 VEC2_ZERO = { 0.0f,0.0f };
 	const Vector2 VEC2_ONE = { 1.0f,1.0f };

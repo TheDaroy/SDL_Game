@@ -1,5 +1,7 @@
 #include "GameEntity.h"
 #include <iostream>
+#include <math.h>
+#include <cmath>
 namespace QuickSDL {
 #pragma region Struct/De-Struct
 	GameEntity::GameEntity(Vector2 pos)
@@ -9,6 +11,7 @@ namespace QuickSDL {
 		mActive = true;
 		mParent = nullptr;
 		mScale = VEC2_ONE;
+		
 	}
 
 
@@ -37,6 +40,8 @@ namespace QuickSDL {
 
 		return mParent->GetPos(world) + rotPos;
 	}
+
+	
 
 #pragma endregion
 
@@ -136,11 +141,40 @@ namespace QuickSDL {
 
 
 #pragma endregion
-
+	
 	void GameEntity::Translate(Vector2 vec)
 	{
 		mPos += vec;
 	}
+
+	Vector2 GameEntity::MoveTowards(Vector2 targetPos)
+	{
+		Vector2 direction;
+		direction = targetPos - mPos;
+		
+		if (std::abs (direction.x) <= 1 && std::abs (direction.y) <=1)
+		{
+			mPos = targetPos;
+			return NULL;
+		}
+		else
+		{
+			return direction.Normalized();
+		}	
+	}
+
+	void GameEntity::MoveForward(float speed = 1)
+	{		
+		
+		Vector2 movePos;
+
+		movePos.x = sin(mRotation* 3.14159265/ 180)  ;
+		movePos.y = cos(mRotation* 3.14159265 / 180) *- 1;
+
+		mPos += movePos * speed;
+	}
+	
+
 
 	void GameEntity::Rotate(float amount)
 	{

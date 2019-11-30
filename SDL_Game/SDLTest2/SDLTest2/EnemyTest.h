@@ -1,20 +1,44 @@
 #pragma once
-#include "GameEntity.h"
-#include "Texture.h"
-#include "Timer.h"
-using namespace QuickSDL;
+#include "PhysEntity.h"
 
-class EnemyTest : public GameEntity
+namespace QuickSDL
+{
+	class Texture;
+	class Timer;
+	
+}
+class EnemyManager;
+using namespace QuickSDL;
+class EnemyTest : public PhysEntity
 {
 public:
-	
+
 	EnemyTest();
 	~EnemyTest();
 	bool mActive = false;
+	unsigned int id;
 	void Update();
-private:
+
+	void WaitingState();
+	void MovingState();
+	void DyingState();
+	void Fire();
+	void Render();
 	Texture* mTexture;
+	Vector2 currentTargetVec;
+private:
+
 	Timer* mtimer;
-	enum States { Waiting, Moving };
+	EnemyManager* mEMgr;
+	enum States { Waiting, Moving, Dying };
+	States mcurrentState;
+	bool mgotPath = false;
+	float mspeed = 70;
+
+	float mfireRate = 1;
+	float mfireTimer = 0;
+	const int mwaitTime = 3;
+	float mwaitTimer = 0;
+	
 };
 
