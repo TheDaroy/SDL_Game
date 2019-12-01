@@ -143,6 +143,7 @@
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BackgroundStars.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="EnemyManager.h" />
@@ -155,10 +156,12 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="MovementHelper.h" />
     <ClInclude Include="PhysEntity.h" />
+    <ClInclude Include="PhysicsHelper.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="PlaySideBar.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="Star.h" />
@@ -173,6 +176,7 @@
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BackgroundStars.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
@@ -189,6 +193,7 @@
     <ClCompile Include="PlayScreen.cpp" />
     <ClCompile Include="PlaySideBar.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="Star.cpp" />

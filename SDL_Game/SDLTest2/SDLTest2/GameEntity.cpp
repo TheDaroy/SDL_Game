@@ -142,10 +142,26 @@ namespace QuickSDL {
 
 #pragma endregion
 	
-	void GameEntity::Translate(Vector2 vec)
+	void GameEntity::Translate(Vector2 vec, SPACE space)
 	{
-		mPos += vec;
+
+		if (space == world)
+		{
+
+			mPos += vec;
+
+		}
+		else
+		{
+
+			mPos += RotateVector(vec, GetRotation());
+
+		}
+
 	}
+	
+	
+	
 
 	Vector2 GameEntity::MoveTowards(Vector2 targetPos)
 	{

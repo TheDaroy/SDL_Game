@@ -28,7 +28,8 @@ namespace QuickSDL {
 
 		void Parent(GameEntity* parent);
 		GameEntity* Parent();
-		void Translate(Vector2 vec);
+
+		void Translate(Vector2 vec, SPACE  space = local);
 		
 		void Rotate(float amount);
 

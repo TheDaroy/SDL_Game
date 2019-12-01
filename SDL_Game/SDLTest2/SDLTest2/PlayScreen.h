@@ -6,7 +6,8 @@
 #include "PlaySideBar.h"
 #include "Level.h"
 #include "Player.h"
-
+#include "EnemyTest.h"
+#include "EnemyManager.h"
 class PlayScreen : public GameEntity {
 private:
 	Timer* mTimer;
@@ -27,9 +28,9 @@ private:
 	Level* mLevel;
 	bool mLevelStarted;
 	int mCurrentStage;
-
+	EnemyManager* mEnemyMgr;
 	Player* mPlayer;
-
+	EnemyTest* mEnemy;
 private:
 	void StartNextLevel();
 

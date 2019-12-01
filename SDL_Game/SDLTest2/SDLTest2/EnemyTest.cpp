@@ -4,6 +4,7 @@
 #include "Timer.h"
 #include "EnemyManager.h"
 #include "BoxCollider.h"
+#include "PhysicsManager.h"
 #include "Projectile.h"
 
 EnemyTest::EnemyTest()
@@ -27,6 +28,10 @@ EnemyTest::~EnemyTest()
 
 	delete mTexture;
 	mTexture = nullptr;
+
+	delete mEMgr;
+	mEMgr = nullptr;
+
 }
 
 void EnemyTest::Update()

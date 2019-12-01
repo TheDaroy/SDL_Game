@@ -8,8 +8,9 @@
 
 Projectile::Projectile(Vector2 pos ,float rot = 0, float speed = 50)
 {
-	mTexture = new Texture("SpaceShipSpriteSheet.png", 0, 0, 40, 38);
+	mTexture = new Texture("SpaceShipSpriteSheet.png", 6, 135, 5, 11);
 	mTexture->Parent(this);
+	mTexture->Scale(GetScale()*2);
 	//AddCollider(new BoxCollider(mTexture->ScaledDimensions()));
 	Pos(pos);
 	mActive = true;
@@ -34,5 +35,5 @@ void Projectile::Render()
 
 void Projectile::Update()
 {
-	MoveForward(2);
+	MoveForward(15);
 }

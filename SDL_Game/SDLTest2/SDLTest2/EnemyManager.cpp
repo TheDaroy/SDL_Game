@@ -10,7 +10,20 @@ EnemyManager::EnemyManager()
 
 EnemyManager::~EnemyManager()
 {
-
+	/*for (int i = 0; i < enemyList.size(); i++)
+	{
+		if (enemyList[i]->mActive)
+		{
+			delete enemyList[i];
+		}
+	}
+	for (int i = 0; i < projectileList.size(); i++)
+	{
+		if (projectileList[i]->mActive)
+		{
+			delete projectileList[i];
+		}
+	}*/
 }
 
 EnemyManager* EnemyManager::Instance()
@@ -24,9 +37,14 @@ EnemyManager* EnemyManager::Instance()
 
 void EnemyManager::Release()
 {
+	
+
 	delete sInstance;
 	sInstance = nullptr;
+	
 }
+
+
 
 void EnemyManager::AddToEnemyList(EnemyTest* entity)
 {

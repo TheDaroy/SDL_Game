@@ -6,7 +6,7 @@ PlayScreen::PlayScreen() {
 	mAudio = AudioManager::Instance();
 
 	mStars = BackgroundStars::Instance();
-
+	mEnemyMgr = EnemyManager::Instance();
 	mSideBar = new PlaySideBar();
 	mSideBar->Parent(this);
 	mSideBar->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.9f, Graphics::Instance()->SCREEN_HEIGHT * 0.05f));
@@ -60,6 +60,11 @@ void PlayScreen::StartNewGame() {
 	mPlayer->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.4f, Graphics::Instance()->SCREEN_HEIGHT * 0.8f));
 	mPlayer->Active(false);
 
+
+	mEnemy = new EnemyTest();
+	mEnemy->Parent(this);
+	mEnemy->Pos(Vector2(Graphics::Instance()->SCREEN_WIDTH * 0.4f, Graphics::Instance()->SCREEN_HEIGHT * 0.2f));
+
 	mStars->Scroll(false);
 	mSideBar->SetHighScore(30000);
 	mSideBar->SetShips(mPlayer->Lives());
@@ -109,5 +114,7 @@ void PlayScreen::Render() {
 			mLevel->Render();
 		}
 		mPlayer->Render();
+		mEnemyMgr->RenderEverything();
+
 	}
 }
